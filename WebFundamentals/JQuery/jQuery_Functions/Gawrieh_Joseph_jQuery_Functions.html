@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Functions!</title>
+    <link rel="stylesheet" href="jQuery_functions.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Padauk&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#jquery_image').hide();
+            $('.close').click(function(){
+                alert("You clicked the close button!");
+            });
+            $('.header a').click(function(){
+                $('.header a').hide(function(){
+                    alert("You just hid the previous and next buttons!");
+                });
+            });
+            $('#hide_h5').click(function(){
+                $('h5').hide(function(){
+                    alert("You just hid the title of the page!");
+                });
+            });
+            $('#show_h5').click(function(){
+                $('h5').show(function(){
+                    alert("Ah, that's better.");
+                });
+            });
+            $('#toggle_headers').click(function(){
+                $('h5,h1').toggle();
+            });
+            $('#slide_it_up').click(function(){
+                $('.add_class_block').slideUp();
+            });
+            $('#slide_it_down').click(function(){
+                $('.add_class_block').slideDown();
+            });
+            $('#slide_toggle').click(function(){
+                $('#jquery_image').slideToggle();
+            });
+            $('#fade_in_hrs').click(function(){
+                $('hr').fadeIn();
+            });
+            $('#fade_out_hrs').click(function(){
+                $('hr').fadeOut();
+            });
+            $('#add_class').click(function(){
+                $('.add_class_block p').addClass("red");
+                $('.add_class_block p').before( "<p>Test before</p>" );
+            });
+            $('#hide_h5').click(function(){
+                $('.wrapper h5').after( "<p>Test after</p>" );
+            });
+            $('#append_btn').click(function(){
+                $('.append_block').append( "<p>Hey thanks for adding me here!</p>" );
+                // $('.append_block').html( "<p>And thanks for adding me too!</p>" );
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <h5>My jQuery basic assignment!</h5>
+        <button id="hide_h5" type="submit">Hide me</button>
+        <button id="show_h5" type="submit">Show me</button>
+        <div class="header">
+            <a href="#" class="previous round">&#11013;</a>
+            <a href="#" class="next round">&#11157;</a>
+            <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <button class="btn"><i class="fa fa-home"></i></button>
+            <input id="url_search" type="url">
+            <input type="text" id="search" name="search">
+            <button id="search_button" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="main_content">
+            <button id="slide_it_down" type="submit">Slide me down</button>
+            <button id="slide_it_up" type="submit">Slide me up!</button>
+            <div class="add_class_block">
+                <h1 id="add_class_header">AddClass</h1>
+                <button id="add_class" type="submit">AddClass</button>
+                <p>Click the button to add class 'red' to this paragraph</p>
+            </div>
+            <hr class="horiz_line">
+            <div class="slide_toggle_block">
+                <h1>Slidetoggle</h1>
+                <button id="slide_toggle" type="submit">Slidetoggle</button>
+                <p>Click the button to slidetoggle a hidden image</p>
+                <img id="jquery_image" src="jQuery.png" alt="jquery image">
+            </div>
+            <hr class="horiz_line">
+            <div class="append_block">
+                <h1>Append</h1>
+                <button id="append_btn" type="submit">Append</button>
+                <p>Click the button to append a new paragraph!</p>
+            </div>
+            <button id="toggle_headers" type="submit">Remove All Headers!</button>
+        </div>
+        <button id="fade_in_hrs" type="submit">Fade in the HR's!</button>
+        <button id="fade_out_hrs" type="submit">Fade out the HR's!</button>
+    </div>
+</body>
+</html>
