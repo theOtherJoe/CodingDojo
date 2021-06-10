@@ -1,0 +1,47 @@
+##### Commands ran ---> 
+# $ pip install Django==1.11.9
+# ---- What it did: pip queried the PyPI for the package "Django" and targeted the version specified, "1.11.9". Once found, pip installed
+# the module inside my virtual environment.
+#
+# $ pip list
+# ---- What it did: pip list shows (lists) all of the packages (modules) that are currently installed. Depending on where you currently are
+# that list could differ (on your local machine itself, or in a python virtual env).
+#
+# $ deactivate
+# ---- What it did: this just exits out of your virtual environment session back to your local machine (or wherever you were before you ran
+# the activation. 
+#
+# $ pip3 list
+# ---- What it did: pip3 list showed all of the packages (modules) that are currently installed on my local machine (since that is where I
+# was before I activated my virtual env session). The list given on this output is different than the list given inside my virtual env. 
+#
+# $ source <path_to_my_env>/bin/activate
+# ---- What it did: I initialized/activated the virtual environment I specified.
+#
+# $ pip install Django==1.11.9
+# ---- What it did: It again queried PyPI for the specified package, then checked if it was already installed. Since it was already installed
+# there was nothing pip needed to do, so it gave the output below and exited successfully.
+## Output: 
+### Requirement already satisfied: Django==1.11.9 in ./myPy3Env/lib/python3.9/site-packages (1.11.9)
+### Requirement already satisfied: pytz in ./myPy3Env/lib/python3.9/site-packages (from Django==1.11.9) (2021.1)
+#
+# $ pip freeze
+# ---- What it did: From a quick google, pip freeze outputs the currently installed packages in a format that can be specified in a file for
+# pip to look at and install (if they aren't already).
+#
+# $ pip freeze > requirements.txt
+# ---- What it did: this command executed the "pip freeze" command and redirected the output to a new file called "requirements.txt". Now we
+# can use this file to specify the packages we want pip to install (since pip freeze gives us the ouput in the correct format to call on "pip
+# install"). There was actually nothing in the file since I haven't installed anything with pip yet (outside of my virtual env).
+#
+# $ pip uninstall Django
+# ---- What it did: this tried to uninstall the Django package, but failed because it's not installed on my local machine (only in my virtual
+# env).
+## Output:
+### WARNING: Skipping Django as it is not installed.
+#
+# $ pip show Django
+# ---- What it did: this tried to "show" the information on the "Django" package, but failed since that package is not currently installed on
+# my local machine. "pip show" shows the package information on installed packages.
+## Output:
+### WARNING: Package(s) not found: Django
