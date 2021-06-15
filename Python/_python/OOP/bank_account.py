@@ -19,16 +19,45 @@ class BankAccount:
         return self
 
     def display_account_info(self):
-        print(f"Balance: ${self.balance}")
-        return self
+        return self.balance
 
     def yield_interest(self):
         if self.balance > 0:
             self.balance += self.balance * self.int_rate
         return self
 
-account1 = BankAccount(1, 50)
-account2 = BankAccount(1, 100)
+class User:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        self.account = BankAccount(int_rate=2, balance=0)
+    
+    def make_deposit(self, amount):
+        self.account.deposit(amount)
+        return self
 
-account1.deposit(50).deposit(100).deposit(5000).withdraw(125).yield_interest().display_account_info()
-account2.deposit(10000).deposit(126).withdraw(45).withdraw(200).withdraw(1200).withdraw(275).yield_interest().display_account_info()
+    def make_withdrawl(self, amount):
+        self.account.withdraw(amount)
+        return self
+
+    def display_user_balance(self):
+        return self.account.display_account_info()
+
+    def transfer_money(self, amount, name):
+        name.make_deposit(amount) 
+        self.account.withdraw(amount)
+        print(f"My account balance is now: ${self.display_user_balance()}")
+        print(f"{name.name}'s account balance is now: ${name.display_user_balance()}")
+        return self
+
+ruth = User("Babe Ruth", "theBabe@nyyankees.com")
+lou = User("Lou Gehrig", "theIronHorse@nyyankees.com")
+joe = User("Joe Dimaggio", "theYankeeClipper@nyyankees.com")
+
+ruth.make_deposit(500000).make_deposit(24500).make_deposit(1250000).make_withdrawl(350000).display_user_balance()
+
+lou.make_deposit(5000000).make_deposit(124500).make_withdrawl(35000).make_withdrawl(88000).display_user_balance()
+
+joe.make_deposit(3500000).make_withdrawl(450000).make_withdrawl(12000).make_withdrawl(4200).display_user_balance()
+
+ruth.transfer_money(15000, joe)
