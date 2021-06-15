@@ -13,7 +13,7 @@ class BankAccount:
     def withdraw(self, amount):
         if self.balance < 0:
             print(f"Insufficient funds: Charging a $5 fee")
-            self.balance = self.balance - 5
+            self.balance -= 5
         else:
             self.balance -= amount
         return self
