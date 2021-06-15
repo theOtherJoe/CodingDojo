@@ -36,7 +36,7 @@ class User:
         self.account.deposit(amount)
         return self
 
-    def make_withdrawl(self, amount):
+    def make_withdrawal(self, amount):
         self.account.withdraw(amount)
         return self
 
@@ -45,7 +45,7 @@ class User:
 
     def transfer_money(self, amount, name):
         name.make_deposit(amount) 
-        self.account.withdraw(amount)
+        self.make_withdrawal(amount)
         print(f"My account balance is now: ${self.display_user_balance()}")
         print(f"{name.name}'s account balance is now: ${name.display_user_balance()}")
         return self
@@ -54,10 +54,10 @@ ruth = User("Babe Ruth", "theBabe@nyyankees.com")
 lou = User("Lou Gehrig", "theIronHorse@nyyankees.com")
 joe = User("Joe Dimaggio", "theYankeeClipper@nyyankees.com")
 
-ruth.make_deposit(500000).make_deposit(24500).make_deposit(1250000).make_withdrawl(350000).display_user_balance()
+ruth.make_deposit(500000).make_deposit(24500).make_deposit(1250000).make_withdrawal(350000).display_user_balance()
 
-lou.make_deposit(5000000).make_deposit(124500).make_withdrawl(35000).make_withdrawl(88000).display_user_balance()
+lou.make_deposit(5000000).make_deposit(124500).make_withdrawal(35000).make_withdrawal(88000).display_user_balance()
 
-joe.make_deposit(3500000).make_withdrawl(450000).make_withdrawl(12000).make_withdrawl(4200).display_user_balance()
+joe.make_deposit(3500000).make_withdrawal(450000).make_withdrawal(12000).make_withdrawal(4200).display_user_balance()
 
 ruth.transfer_money(15000, joe)
