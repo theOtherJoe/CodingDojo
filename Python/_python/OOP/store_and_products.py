@@ -9,17 +9,15 @@ class Store:
         return self
 
     def sell_product(self, id):
-        for item in range(len(self.products_list)):
-            id = self.products_list[item]
+        print(self.products_list[id])
         self.products_list.pop(id)
-        # print(self.print_info())
         return self
-
 class Product:
     def __init__(self, name, price, category):
         self.product_name = name
         self.price = price
         self.category = category
+        self.product = [name, price, category]
 
     def update_price(self, percent_changed, is_increased):
         if is_increased == True:
@@ -37,4 +35,8 @@ product1 = Product("Bang", 3.50, "Energy Drinks")
 product2 = Product("Cliff Builder", 2.50, "Protein Bars")
 product3 = Product("Lifeblood", 15.99, "Multivitamins")
 
-store1.add_product(product1).add_product(product2).add_product(product3)
+store1.add_product(product1.product).add_product(product2.product).add_product(product3.product)
+
+print(store1.products_list)
+store1.sell_product(0)
+print(store1.products_list)
