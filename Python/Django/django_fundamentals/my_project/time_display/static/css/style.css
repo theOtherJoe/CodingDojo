@@ -1,0 +1,10 @@
+.main {
+    text-align: center;
+    display: inline-block;
+    margin-left: 550px;
+}
+
+h1, h4 {
+    border: 2px solid black;
+    padding: 10px;
+}
