@@ -1,8 +1,10 @@
+import random
 class Product:
     def __init__(self, name, price, category):
         self.product_name = name
         self.price = price
         self.category = category
+        self.uni_id = random.getrandbits(32)
 
     def update_price(self, percent_changed, is_increased):
         if is_increased == True:
