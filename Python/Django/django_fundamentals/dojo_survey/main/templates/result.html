@@ -13,20 +13,20 @@
             {% csrf_token %}
             <h1 class="mb-3 mt-4">Submitted Info</h1> 
             <div class="row mb-3">
-                <label for="nameResult" class="col-sm-2">Name:</label>
-                <input readonly class="col-sm-4" id="nameResult" value="{{fullname}}">
+                <label for="nameResult" class="form-label col-sm-2">Name:</label>
+                <input readonly class="col-sm-4" id="nameResult" value="{{name}}">
             </div>
             <div class="row mb-3">
-                <label for="locationResult" class="col-sm-2">Dojo Location:</label>
-                <input readonly class="col-sm-4" id="locationResult" value="{{dojolocation}}">
+                <label for="locationResult" class="form-label col-sm-2">Dojo Location:</label>
+                <input readonly class="col-sm-4" id="locationResult" value="{{location}}">
             </div>
             <div class="row mb-3">
-                <label for="languageResult" class="col-sm-2">Favorite Language:</label>
+                <label for="languageResult" class="form-label col-sm-2">Favorite Language:</label>
                 <input readonly class="col-sm-4" id="languageResult" value="{{language}}">
             </div>
             <div class="row mb-3">
                 <label for="commentResult" class="form-label col-sm-2">Comment:</label>
-                <input readonly class="col-sm-4" id="commentResult" value="{{finalcomment}}">
+                <input readonly class="col-sm-4" id="commentResult" value="{{comment}}">
             </div>
             <button class="btn btn-primary col-md-4 mt-4">Go Back!</button>
         </form>
