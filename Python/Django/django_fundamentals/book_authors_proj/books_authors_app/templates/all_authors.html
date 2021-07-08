@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h2 class="mt-2 ">Add an Author</h2>
-                <form action="/authors/add_author" method="POST">
+                <form action="/authors/create_author" method="POST">
                     {% csrf_token %}
                     <div class="form-group row mt-2">
                         <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
@@ -56,6 +56,13 @@
                     </tbody>
                 </table>
             </div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>Error! {{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </div>
     </div>
 </body>
