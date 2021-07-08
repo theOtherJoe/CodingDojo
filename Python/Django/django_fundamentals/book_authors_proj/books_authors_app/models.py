@@ -1,5 +1,15 @@
 from django.db import models
 
+class AuthorManager(models.Manager):
+    def basic_validator(self, postData):
+        errors = {}
+        if len(postData['first_name']) < 2:
+            errors['first_name'] = "First name must be at least 2 or more characters long"
+        if len(postData['last_name']) < 2:
+            errors['last_name'] = "Last name must be at least 2 or more characters long"
+        if len(postData['notes']) < 5:
+            errors['notes'] = "Notes must be at least 5 or more characters long"
+        return errors
 class Book(models.Model):
     title = models.CharField(max_length=255)
     desc = models.TextField()
@@ -13,3 +23,4 @@ class Author(models.Model):
     notes = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = AuthorManager()
