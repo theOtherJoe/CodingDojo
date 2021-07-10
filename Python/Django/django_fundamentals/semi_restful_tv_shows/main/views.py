@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Show, Network
+from django.contrib import messages
 
 def base(request):
     return redirect('/shows')
@@ -8,6 +9,12 @@ def new_show(request):
     return render(request, 'create_show.html')
 
 def create_shows(request):
+    errors = Show.objects.show_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/shows/new')
+
     network_post = request.POST['network']
     show1 = Show.objects.create(
         title = request.POST['title'],
@@ -31,6 +38,12 @@ def all_shows(request):
     return render(request, 'shows.html', context)
 
 def update_show(request, id):
+    errors = Show.objects.show_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/shows/new')
+
     show = Show.objects.get(id=id)
     show.title = request.POST['title']
     show.network.name = request.POST['network']
