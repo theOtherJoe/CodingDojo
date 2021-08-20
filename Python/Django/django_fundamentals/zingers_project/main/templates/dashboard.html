@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Zingers Homemade Ice Cream</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <span class="mb-0 h1">Welcome Back, {{ current_user.first_name }}!</span>
+            <a class="navbar-brand mr-sm-2 my-2" href="/home">Home</a>
+            <a class="navbar-brand mr-sm-2 my-2" href="/flavors">Flavors</a>
+            <a class="navbar-brand mr-sm-2 my-2" href="/create_order">Create Order</a>
+            <a class="navbar-brand mr-sm-2 my-2" href="/logout">Log Out</a>
+        </nav>
+        <h4 class="mt-2">Dashboard</h4>
+        <table class="table table-bordered mt-4 table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Birthday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">{{current_user.first_name}} {{current_user.last_name}}</th>
+                    <th>{{current_user.email}}</th>
+                    <th>{{current_user.birthday}}</th>
+                </tr>
+            </tbody>
+        </table>
+        <h5 class="mt-2">Current Orders:</h5>
+        <table class="table table-bordered mt-4 table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Flavor(s)</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in all_orders %}
+                <tr>
+                    <th scope="row">{{order.id}}</th>
+                    <th>{{order.flavor}}</th>
+                    <th>{{order.total_cost}}</th>
+                    <th><a href="/orders/{{order.id}}/cancel_order">Cancel Order</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h5 class="mt-2">Past Orders:</h5>
+        <table class="table table-bordered mt-4 table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Flavor(s)</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in all_orders %}
+                <tr>
+                    <th scope="row">{{order.id}}</th>
+                    <th>{{order.flavor}}</th>
+                    <th>{{order.total_cost}}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h5 class="mt-2">Your Favorite Flavors!</h5>
+        <table class="table table-bordered mt-4 table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Flavor(s)</th>
+                    <th scope="col">Remove From Likes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ic in all_flavors %}
+                {% if current_user in ic.users_who_like.all %}
+                <tr>
+                    <th scope="row">{{ic.ic_flavor}}</th>
+                    <th><a href="/{{current_user.id}}/{{ic.id}}/unlike_flavor">Remove</a></th>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

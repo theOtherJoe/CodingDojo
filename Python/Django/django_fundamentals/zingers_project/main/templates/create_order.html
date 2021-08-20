@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Zingers Homemade Ice Cream</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <span class="mb-0 h1">Welcome Back, {{ current_user.first_name }}!</span>
+            <a class="navbar-brand mr-sm-2 my-2" href="/home">Home</a>
+            <a class="navbar-brand mr-sm-2 my-2" href="/dashboard">Dashboard</a>
+            <a class="navbar-brand mr-sm-2 my-2" href="/flavors">Flavors</a>
+            <a class="navbar-brand mr-sm-2 my-2" href="/logout">Log Out</a>
+        </nav>
+        <h4 class="mt-2 mb-2 text-left">Ready to create your treat? Start your order below!</h4>
+        <div class="mt-4">
+            <form action="/submit_order" method="POST">
+                {% csrf_token %}
+                <h6 class="mt-2">Type of Event:</h6>
+                <div class="mb-3 col-sm-2">
+                    <select class="form-select" required aria-label="type_of_event" name="type_of_event">
+                        <option value="default" selected>Make your selection</option>
+                        <option value="individual">Individual</option>
+                        <option value="group">Group</option>
+                        <option value="catering">Catering</option>
+                    </select>
+                </div>
+                <div class="mb-3 mt-2 col-sm-2">
+                    <label for="num_of_people" class="form-label">Number of People:</label>
+                    <input type="integer" class="form-control" name="num_of_people">
+                </div>
+                <h6 class="mt-2">Flavor:</h6>
+                <div class="mb-3 col-sm-2">
+                    <select class="form-select" required aria-label="flavor" name="flavor">
+                        <option value="default" selected>Choose your flavor!</option>
+                        <option value="cookies">Cookies and Cream</option>
+                        <option value="coffee">Coffee</option>
+                        <option value="marionberry">Marionberry</option>
+                    </select>
+                </div>
+                <h6 class="mt-2">Waffle Cone/Bowl Selection:</h6>
+                <div class="mb-3 col-sm-4">
+                    <select class="form-select" required aria-label="cb_selection" name="cb_selection">
+                        <option value="default" selected>Choose your cone or bowl!</option>
+                        <option value="hmw_cone">Homemade Waffle Cone</option>
+                        <option value="hmw_bowl">Homemade Waffle Bowl</option>
+                        <option value="sugar_cone">Sugar Cone</option>
+                        <option value="kids_cone">Kids Cone</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="special_requests" class="col-form-label">Special Requests</label>
+                    <textarea name="special_requests" class="form-control" id="special_requests" rows="4"></textarea>
+                </div>
+                <div>
+                    <button name="submit" class="btn btn-primary mt-4 mb-4">Submit Order!</button>
+                    <button name="cancel" class="btn btn-primary mt-4 mb-4">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if messages %}
+    <ul class="messages mt-2">
+        {% for message in messages %}
+            <li>Error! {{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="row">
+        <div class="w-100">
+            <img src="/static/Cones2.webp" class="img-fluid rounded mx-auto d-block" alt="yummy homemade waffle cones">
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>
